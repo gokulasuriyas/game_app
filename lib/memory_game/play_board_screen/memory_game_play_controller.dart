@@ -1,7 +1,5 @@
 import 'dart:io';
-
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 class MemoryGamePlayController extends GetxController {
   late List<File> gameImages;
@@ -17,13 +15,13 @@ class MemoryGamePlayController extends GetxController {
   void flipCard(int index) {
     if (!flippedIndexes.contains(index) && flippedIndexes.length < 2) {
       flippedIndexes.add(index);
-      // Check for match after two cards are flipped
       if (flippedIndexes.length == 2) {
-        Future.delayed(Duration(seconds: 1), () {
+        Future.delayed(Duration(milliseconds: 600), () {
           checkForMatch();
         });
       }
     }
+    update();
   }
 
   // Check if the two flipped cards are a match
@@ -33,8 +31,11 @@ class MemoryGamePlayController extends GetxController {
       final secondImage = gameImages[flippedIndexes[1]];
       if (firstImage.path == secondImage.path) {
         matchedIndexes.addAll(flippedIndexes);
+      } else {
+        Future.delayed(Duration(milliseconds: 600), () {
+          flippedIndexes.clear();
+        });
       }
-      flippedIndexes.clear();
     }
   }
 }

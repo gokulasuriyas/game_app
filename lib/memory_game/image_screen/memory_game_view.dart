@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -28,29 +27,30 @@ class MemoryGameView extends GetView<MemoryGameController> {
                       return controller.selectedImages.isEmpty
                           ? const Center(child: Text('Select Image'))
                           : GridView.builder(
-                        padding: const EdgeInsets.all(8.0),
-                        itemCount: controller.selectedImages.length,
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
-                          crossAxisSpacing: 8.0,
-                          mainAxisSpacing: 8.0,
-                        ),
-                        itemBuilder: (BuildContext context, int index) {
-                          return Card(
-                            elevation: 4,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Image.file(
-                                controller.selectedImages[index],
-                                fit: BoxFit.cover,
+                              itemCount: controller.selectedImages.length,
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3,
+                                crossAxisSpacing: 8.0,
+                                mainAxisSpacing: 8.0,
                               ),
-                            ),
-                          );
-                        },
-                      );
+                              itemBuilder: (BuildContext context, int index) {
+                                return Card(
+                                  elevation: 4,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Image.file(
+                                      controller.selectedImages[index],
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
                     }),
                   ),
                   const SizedBox(height: 20),
@@ -70,8 +70,9 @@ class MemoryGameView extends GetView<MemoryGameController> {
                     onPressed: () {
                       if (controller.selectedImages.isNotEmpty) {
                         Get.to(() => MemoryGamePlayView(
-                          selectedImages: controller.selectedImages.toList(), // Pass a copy of the list
-                        ));
+                              selectedImages: controller.selectedImages
+                                  .toList(), // Pass a copy of the list
+                            ));
                       } else {
                         Get.snackbar(
                           'No Images Selected',

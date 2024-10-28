@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:game_app/word_search_game/word_enter_screen/word_search_controller.dart';
+import 'package:game_app/word_search_game/word_enter_screen/word_search_view.dart';
 import 'package:get/get.dart';
-
-import 'flash_card_game/flash_card_view.dart';
 import 'memory_game/image_screen/memory_game_view.dart';
 
 
@@ -16,7 +16,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flip Card with GetX',
      // home: FlashCardView(),
-      home: MemoryGameView(),
+     // home: MemoryGameView(),
+      home: WordSearchView(),
+
     );
   }
 }
